@@ -1,89 +1,9 @@
 `mleig` <-
-function(x,kernel="normal"){
-dLaplace<-function(x){
-dsty<-(1/2)*exp(-sqrt(x^2))
-return(dsty)
-}
-inicials<-mleIG(x)
-mu.start<-inicials$mu
-lambda.start<-inicials$lambda
-data<-x
-if(kernel=="normal"){
-dgign<-function(x,mu=1.0,lambda=1.0,log=FALSE){
-cantidad<-sqrt(lambda/mu)*(sqrt(x/mu)-sqrt(mu/x))
-jacobiano<-sqrt(lambda)/sqrt(x^3)
-density<-dnorm(cantidad,0,1)*jacobiano
-if(log==TRUE){density<-log(density)}
-return(density)
-}
-Loglik<-function(theta,x){
-sum(-dgign(x,mu=theta[1],lambda=theta[2],log=TRUE))
-}
-theta.start<-c(mu.start,lambda.start)
-W<-nlm(Loglik,theta.start,x=data)
-estimates<-W$estimate
-esti<-list(mu=estimates[1],lambda=estimates[2])
-}
-if(kernel=="t"){
-# Choosing the value for nu from the data
-nus<-seq(1,100)
-resultados.sic<-seq(1,100)
-for(i in 1:100){
-nu<-nus[i]
-a<-sicig(data,"t",nu)
-resultados.sic[i]<-a
-}
-# What value for nu?
-minimo<-min(resultados.sic)
-grado.libertad<-which(resultados.sic==minimo)
-nu.start<-grado.libertad
-dgigt<-function(x,mu=1.0,lambda=1.0,nu=1.0,log=FALSE){
-cantidad<-sqrt(lambda/mu)*(sqrt(x/mu)-sqrt(mu/x))
-jacobiano<-sqrt(lambda)/sqrt(x^3)
-density<-dt(cantidad,nu)*jacobiano
-if(log==TRUE){density<-log(density)}
-return(density)
-}
-Loglik<-function(theta,x){
-sum(-dgigt(x,mu=theta[1],lambda=theta[2],nu=nu.start,log=TRUE))
-}
-theta.start<-c(mu.start,lambda.start,nu.start)
-W<-nlm(Loglik,theta.start,x=data)
-estimates<-W$estimate
-esti<-list(mu=estimates[1],lambda=estimates[2],nu=estimates[3])
-}
-if(kernel=="logistic"){
-dgiglog<-function(x,mu=1.0,lambda=1.0,log=FALSE){
-cantidad<-sqrt(lambda/mu)*(sqrt(x/mu)-sqrt(mu/x))
-jacobiano<-sqrt(lambda)/sqrt(x^3)
-density<-dlogis(cantidad,0,1)*jacobiano
-if(log==TRUE){density<-log(density)}
-return(density)
-}
-Loglik<-function(theta,x){
-sum(-dgiglog(x,mu=theta[1],lambda=theta[2],log=TRUE))
-}
-theta.start<-c(mu.start,lambda.start)
-W<-nlm(Loglik,theta.start,x=data)
-estimates<-W$estimate
-esti<-list(mu=estimates[1],lambda=estimates[2])
-}
-if(kernel=="Laplace"){
-dgiglap<-function(x,mu=1.0,lambda=1.0,log=FALSE){
-cantidad<-sqrt(lambda/mu)*(sqrt(x/mu)-sqrt(mu/x))
-jacobiano<-sqrt(lambda)/sqrt(x^3)
-density<-dLaplace(cantidad)*jacobiano
-if(log==TRUE){density<-log(density)}
-return(density)
-}
-Loglik<-function(theta,x){
-sum(-dgiglap(x,mu=theta[1],lambda=theta[2],log=TRUE))
-}
-theta.start<-c(mu.start,lambda.start)
-W<-nlm(Loglik,theta.start,x=data)
-estimates<-W$estimate
-esti<-list(mu=estimates[1],lambda=estimates[2])
-}
-return(esti)
+function(x){
+
+    l         <- length(x) / sum((1 / x) - (1 / mean(x)))
+    estimates <- list(muEstimate     = mean(x), 
+                      lambdaEstimate = l)
+    return(estimates)
 }
 

@@ -1,51 +1,51 @@
 \name{mleig}
+
 \alias{mleig}
 
-\title{Maximum likelihood estimation (MLE) of the inverse Gaussian type distribution}
+\title{Maximum likelihood estimation of the IGTD}
 
 \description{
-The function mleig estimates the parameters mu and lambda of the IGTD from a sample of observations.
-Also, the parameter nu is estimated when the t kernel is considered. In addition, the value for the
-log-likelihood function from a sample of the IGTD is given.}
+  The function \code{mleig} gives the maximum likelihood estimate (MLE) of the 
+  parameters mu and lambda of the IGD (classical case) from a sample of observations 
+  based on this distribution.
+}
 
 \usage{
-mleig(x, kernel = "normal")
+mleig(x)
 }
 
 \arguments{
   \item{x}{Vector of observations.}
-  \item{kernel}{Kernel of the pdf of the associated symmetrical distribution by means of which the IGTD is obtained. The kernels: \code{"Laplace"}, \code{"logistic"}, \code{"normal"} and \code{"t"} are available.}
 }
 
 \details{
-The used algorithm is based on a method proposed by Sanhueza, Leiva and Balakrishnan (2007),
-which uses a type-EM algorithm. The iterative procedure considers the estimates for mu and lambda of the classical IG case as
-initial values, which has a closed analytical form; see Chhikara and Folks (1989).
-The implemented method is a robust estimation procedure because for the classical IG
-case of the IGD, this gives equal weights for each case, independently of whether the value
-is in the tails or in the center of the distribution. However, for the IGT-t case,
-the method gives smaller weight to the extreme cases.
+  The MLEs of the parameters mu and lambda of the classical IG distribution
+  are obtained using the analytical expressions of these estimators.
 }
 
 \value{
-\code{mleig()} estimate the parameters of the IGTD from a sample of observations.
+  \code{mleig()} computes MLEs for the parameters of the classical IGD 
+  giving results according to the following list:
+  \item{muEstimate}{Returns the value of the MLE of mu.}
+  \item{lambdaEstimate}{Returns the value of the MLE of lambda.}
 }
 
-\references{
-Chhikara, R. S., Folks, J. L. (1989). The Inverse Gaussian Distribution. Marcel Dekker, New York.
-
-Sanhueza, A., Leiva, V., Balakrishnan, N. (2007). A new class of inverse Gaussian type distributions. Metrika (in press).
-}
+\references{Sanhueza, A., Leiva, V., Balakrishnan, N. (2008). A new class of 
+            inverse Gaussian type distributions. Metrika (in press).}
 
 \author{
-Víctor Leiva <victor.leiva@uv.cl>, Hugo Hernández <hugo.hernandez@msn.com>, and Antonio Sanhueza <asanhue@ufro.cl>.
+Víctor Leiva <victor.leiva@uv.cl; victor.leiva@yahoo.com>, \cr
+Hugo Hernández <hugo.hernandez.p@gmail.com> and \cr
+Antonio Sanhueza <asanhueza@ufro.cl>.
 }
 
 \examples{
-## Generates a sample from the IGTD
-## Estimates the parameters of the IGTD with g="normal"
-x<-rig(300,mu=1,lambda=1,kernel="normal")
-mleig(x, kernel="normal")
+## Generates a sample from the IGTD with normal kernel
+x <- rigt(300, mu = 1.0, lambda = 1.0, kernel = "normal")
+
+## Computes the likelihood for a sample x from the IGTD with normal kernel
+mleig(x)
 }
 
 \keyword{univar}
+\keyword{htest}

@@ -1,31 +1,34 @@
-\name{kappaII}
-\alias{kappaII}
+\name{kappaii}
+
+\alias{kappaii}
 
 \title{Transformation of the IGTD distribution}
 
 \description{
-Compute the value of a tranformation of the IGT distribution.
+  This function gives the value of a tranformation of the IGT distribution.
 }
 
 \usage{
-kappaII(t = 1, theta = c(1, 1))
+kappaii(x, theta = c(1.0, 1.0))
 }
 
 \arguments{
-  \item{t}{Vector of observations.}
+  \item{x}{Vector of observations.}
   \item{theta}{Vector of parameters of mu and lambda.}
 }
 
 \value{
-\code{kappa()} compute the value of a tranformation of the IGT distribution.
+  \code{kappaii()} computes the value of a tranformation of the IGTD.
 }
 
-\references{
-Sanhueza, A., Leiva, V. and Balakrishnan, N. (2007). A new class of inverse Gaussian type distributions. Metrika (in press).
+\references{Sanhueza, A., Leiva, V., Balakrishnan, N. (2008). A new class of 
+            inverse Gaussian type distributions. Metrika (in press).
 }
 
 \author{
-Víctor Leiva <victor.leiva@uv.cl>, Hugo Hernández <hugo.hernandez@msn.com>, and Antonio Sanhueza <asanhue@ufro.cl>.
+Víctor Leiva <victor.leiva@uv.cl; victor.leiva@yahoo.com>, \cr
+Hugo Hernández <hugo.hernandez.p@gmail.com> and \cr
+Antonio Sanhueza <asanhueza@ufro.cl>.
 }
 
 \keyword{univar}

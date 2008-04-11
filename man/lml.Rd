@@ -1,28 +1,43 @@
 \name{lml}
+
 \alias{lml}
 
-\title{Analitical second derivative with respect to mu and lambda}
+\title{Analytical second derivative with respect to mu and lambda of the IGTD}
 
-\description{Compute the second analitical derivative of the loglikelihood with respest to mu and lambda.}
+\description{
+  This function computes the second analytical derivative of the loglikelihood 
+  with respect to mu and lambda of the IGTD.
+}
 
 \usage{
-lml(theta, x, kernel = "normal", nu = 1)
+lml(theta, x, nu = 1.0, kernel = "normal")
 }
 
 \arguments{
   \item{theta}{Vector of parameters \code{mu} and \code{lambda}.}
   \item{x}{Vector of observations.}
-  \item{kernel}{Kernel of the pdf of the associated symmetrical distribution by means of which the IGTD is obtained.}
-  \item{nu}{Additional parameter of the IGTD when the t kernel is used.}
+  \item{nu}{Shape parameter corresponding to the degrees of freedom of the t 
+            distribution. In the case of the Laplace, logistic, normal kernels,
+            nu can be fixed at the value 1.0 since this parameter is not 
+            involved in these kernels.}
+  \item{kernel}{Kernel of the pdf of the associated symmetrical distribution 
+                by means of which the IGTD is obtained. The kernels: 
+                \code{"laplace"}, \code{"logistic"}, \code{"normal"} and 
+                \code{"t"} are available.}
 }
 
-
-\references{
-Sanhueza, A., Leiva, V. and Balakrishnan, N. (2007). A new class of inverse Gaussian type distributions. Metrika (in press).
+\value{
+  \code{lml()} return the second analytical derivative of the loglikelihood 
+  with respect to mu and lambda of the IGTD.
 }
+
+\references{Sanhueza, A., Leiva, V., Balakrishnan, N. (2008). A new class of 
+            inverse Gaussian type distributions. Metrika (in press).}
 
 \author{
-Víctor Leiva <victor.leiva@uv.cl>, Hugo Hernández <hugo.hernandez@msn.com>, and Antonio Sanhueza <asanhue@ufro.cl>.
+Víctor Leiva <victor.leiva@uv.cl; victor.leiva@yahoo.com>, \cr
+Hugo Hernández <hugo.hernandez.p@gmail.com> and \cr
+Antonio Sanhueza <asanhueza@ufro.cl>.
 }
 
 \keyword{math}
