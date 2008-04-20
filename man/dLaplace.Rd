@@ -28,7 +28,7 @@ dlaplace(x)
 }
 
 \references{Mineo, A. (2003). A new package for the general error distribution. 
-            R News 3, 13-16.
+            R News, 3(2), 13-16.
             
             Sanhueza, A., Leiva, V., Balakrishnan, N. (2008). A new class of 
             inverse Gaussian type distributions. Metrika (in press).
