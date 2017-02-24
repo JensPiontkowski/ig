@@ -1,4 +1,4 @@
-\name{psi26}
+\name{psi21}
 
 \alias{psi21}
 

@@ -9,31 +9,21 @@ function(n,
     if(mu <= 0)     stop("mu must be positive")
     if(lambda <= 0) stop("lambda must be positive")
 
-    v0 <- switch(kernel,
-                 "normal"   = rchisq(n, 1),
-                 "t"        = rf(n, 1, nu),
-                 "laplace"  = rgamma(n, 1, 1/2, 2),
-                 "logistic" = rbeta(n, 1, 1)
-          )
-
-    x1     <- mu + (((mu ^ 2) * v0) / (2 * lambda)) -
-              (mu / (2 * lambda)) * sqrt(4 * mu * lambda * v0 +
-              ((mu ^ 2) * (v0 ^ 2)))
-    x2     <- (mu ^ 2) / x1
-    p0     <- mu / (mu + x1)
-    u0     <- runif(n)
-    random <- rep(0, n)
-
-    for(i in 1:n){
-
-        if(u0[i] <= p0[i]){
-            random[i] <- x1[i]
-        }
-        else
-        {
-            random[i] <- x2[i]
-        }
-    }
+    
+    v0 <- switch(kernel, 
+                 normal = rnorm(n,0, 1), 
+                 t = rt(n, nu, ncp = 0),
+                 laplace = sqrt(2*rexp(n))*rnorm(n), 
+                 logistic = rlogis(n, 0, 1))
+    v0 <- v0^2
+    x1 <- mu + (((mu^2) * v0)/(2 * lambda)) - (mu/(2 * lambda)) * 
+      sqrt(4 * mu * lambda * v0 + ((mu^2) * (v0^2)))
+    x2 <- (mu^2) / x1
+    p0 <- mu / (mu + x1)
+    u0 <- runif(n)
+    random <- x2
+    positions_x1<-(u0<=p0)
+    random[positions_x1]<-x1[positions_x1]
     return(random)
 }
 

@@ -78,16 +78,16 @@ generator for the IGTD following a similar procedure to the one given in Chhikar
 and Folks (1989, pp. 52-53) for the classical inverse Gaussian distribution. This generator has been
 implemented in the \pkg{ig} package. Thus, if \eqn{T \sim {\rm IGT}(\mu,
 \lambda; g)}, the algorithm steps are:
-\begin{itemize}
+\itemize{
 \item Generate a r.n. \eqn{u} from \eqn{U \sim G\chi^2(g)} by using an appropriate generator.
 \item Generate a r.n. \eqn{w} from \eqn{W \sim U(0,1)}.
 \item Set values for \eqn{\mu} and \eqn{\lambda} and then compute a random number \eqn{t = t_1} or \eqn{t = t_2} from \eqn{T \sim IGT(\mu, \lambda; g)} according to the following criterion:
-\end{itemize}
+}
 
-\begin{enumerate}
+\enumerate{
 \item If \eqn{w \leq p_0}, then \eqn{t_1=\mu+\frac{\mu^2\,u}{2\lambda}-\frac{\mu}{2\lambda}\sqrt{4\mu\lambda\,u+\mu^2\,u^2}}, where \eqn{p_0=\frac{\mu}{\mu+t_1}};
 \item If \eqn{w > p_0}, then \eqn{t_{2}= \frac{\mu^2}{t_1}}. 
-\end{enumerate}
+}
 }
              
 \value{
